@@ -16,7 +16,7 @@ source "$dir/logging.sh"
 
 ## OPTIONS
 configuration_path="." # Optional
-configuration_name="" # Required
+configuration_name="default" # Optional
 
 print_usage() {
     cat << EOF
@@ -24,12 +24,12 @@ Usage: $(basename "${BASH_SOURCE[0]}") [options]
 
 Options:
     -p, --path PATH         Configuration path (default: ".")
-    -n, --name NAME         Configuration name (required)
+    -n, --name NAME         Configuration name (default: "default")
     -v, --verbose           Print verbose output (debug logs)
     -h, --help              Print this help message
 
 Example:
-    $(basename "${BASH_SOURCE[0]}") --name kent --address example.com
+    $(basename "${BASH_SOURCE[0]}") --name kent
 EOF
 }
 
@@ -103,7 +103,7 @@ nix run \
 cli_debug "Run disko partitioning"
 nix run \
   --experimental-features "nix-command flakes" \
-  nixpkgs#disko -- --mode disko --flake "${flake_path}" --show-trace
+  nixpkgs#disko -- --mode disko --flake "${flake_path}"
 
 cli_debug "Installing system"
 nixos-install -v --show-trace --no-root-passwd\
