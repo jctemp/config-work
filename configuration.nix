@@ -327,15 +327,9 @@ lib.mkMerge [
       enable32Bit = true;
     };
 
-    environment.sessionVariables = {
-      GIO_EXTRA_MODULES = ["${pkgs.glib-networking}/lib/gio/modules"];
-    };
-
     environment.systemPackages = [
       pkgs.gnomeExtensions.forge
       pkgs.adwaita-icon-theme
-      pkgs.gsettings-desktop-schemas
-      pkgs.glib-networking
     ];
   }
 ]
